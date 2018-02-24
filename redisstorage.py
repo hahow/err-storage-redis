@@ -5,7 +5,6 @@ from jsonpickle import encode, decode
 from typing import Any
 
 from errbot.storage.base import StorageBase, StoragePluginBase
-from errbot.utils import compat_str
 import redis
 
 log = logging.getLogger('errbot.storage.redis')
@@ -16,7 +15,7 @@ GLOBAL_PREFIX = 'errbot'
 class RedisStorage(StorageBase):
 
     def _make_nskey(self, key):
-        return ':'.join((GLOBAL_PREFIX, self.ns, compat_str(key)))
+        return ':'.join((GLOBAL_PREFIX, self.ns, key))
 
     def __init__(self, redis, namespace):
         self.redis = redis
